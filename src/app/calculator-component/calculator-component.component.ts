@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbdButtonsCheckbox } from './button-checkbox';
 
 @Component({
   selector: 'app-calculator-component',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calculator-component.component.css']
 })
 export class CalculatorComponentComponent implements OnInit {
+
+   operator : string = "Add";
 
   constructor() { }
 
