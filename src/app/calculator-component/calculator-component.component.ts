@@ -8,11 +8,38 @@ import { NgbdButtonsCheckbox } from './button-checkbox';
 })
 export class CalculatorComponentComponent implements OnInit {
 
-   operator : string = "Add";
+  state : string = "numberOne";
+  numberOne : Number;
+  numberTwo : Number;
+  display : string = "";
+  operator : string = "Add";
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  enterNumber (number: string ) {
+    this.display += number;
+  }
+
+  operate (op : string) {
+    if (this.state == "numberOne") {
+      // copy the display to numberOne
+      this.numberOne = parseFloat(this.display);
+      // clear display
+      this.display = "";
+      // flip state to numberTwo
+      this.state = "numberTwo";
+    } else if (this.state == "numberTwo") {
+      // copy the display to numberOne
+      this.numberOne = parseFloat(this.display);
+      // clear display
+      this.display = "getresult";      
+    }
+  }
+
+  getresult () {
+
+  }
 }
