@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbdButtonsCheckbox } from './button-checkbox';
 
+import { CalculatorService } from './../calculator.service';
+
 @Component({
   selector: 'app-calculator-component',
   templateUrl: './calculator-component.component.html',
-  styleUrls: ['./calculator-component.component.css']
+  styleUrls: ['./calculator-component.component.css'],
+  providers: [CalculatorService]
 })
 export class CalculatorComponentComponent implements OnInit {
 
@@ -15,7 +18,7 @@ export class CalculatorComponentComponent implements OnInit {
   display: string = "";
   operator: string = "Add";
 
-  constructor() { }
+  constructor(private calcService: CalculatorService) { }
 
   ngOnInit() {
   }
@@ -72,20 +75,7 @@ export class CalculatorComponentComponent implements OnInit {
   }
 
   getresult(operators) {
-    // call a service and get the number
-    var tempResult = this.numbers[0];
-    for (var i = 1; i <= this.numbers.length; i++) {
-      var tempNumber = this.numbers[i];
-      var tempOperator = this.operators[i-1];
-      switch (tempOperator) {
-        case '+': tempResult = tempResult + tempNumber; break;
-        case '-': tempResult = tempResult - tempNumber; break;
-        case '*': tempResult = tempResult * tempNumber; break;
-        case '/': tempResult = tempResult / tempNumber; break;
-      }
-    }
-    console.log("number is =" + tempResult);
-    return tempResult;
+    return this.calcService.calculate(this.numbers, this.operators);
   }
 
   clear() {
