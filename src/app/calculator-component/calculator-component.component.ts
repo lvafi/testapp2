@@ -8,38 +8,88 @@ import { NgbdButtonsCheckbox } from './button-checkbox';
 })
 export class CalculatorComponentComponent implements OnInit {
 
-  state : string = "numberOne";
-  numberOne : Number;
-  numberTwo : Number;
-  display : string = "";
-  operator : string = "Add";
+  state: string = "enter Number";
+  numbers: Array<number> = [];
+  operators: Array<string> = [];
+  result: Number = 0;
+  display: string = "";
+  operator: string = "Add";
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  enterNumber (number: string ) {
+  enterNumber(number: string) {
+    // if the display already is showing the total result,
+    // and the user enter another digit again, 
+    // the display needs to be cleared to store the new number
+    if (this.state == "obtain result") {
+      this.display = "";
+      this.state = "enter Number";
+    }
     this.display += number;
   }
 
-  operate (op : string) {
-    if (this.state == "numberOne") {
-      // copy the display to numberOne
-      this.numberOne = parseFloat(this.display);
-      // clear display
-      this.display = "";
-      // flip state to numberTwo
-      this.state = "numberTwo";
-    } else if (this.state == "numberTwo") {
-      // copy the display to numberOne
-      this.numberOne = parseFloat(this.display);
-      // clear display
-      this.display = "getresult";      
+  operate(op: string) {
+    try {
+      if (this.state == "enter Number") {
+        this.operateOnSymbol(op);
+      } else if (this.state == "obtain result") {
+        /*
+        if (op == "+" || op == "-" || op == "*" || op == "/") {
+          this.state = "enter Number";
+          this.operateOnSymbol(op);          
+        }
+        */
+      }
+    }
+    catch (ex) {
+
     }
   }
 
-  getresult () {
+  private operateOnSymbol(op) {
+    // save operator
+    this.operators.push(op);
+    // copy the display to number
+    var convertedNumber = parseFloat(this.display);
+    this.numbers.push(convertedNumber);
 
+    console.log("number is =" + convertedNumber);
+    // clear display
+    this.display = "";
+    // check to see if operation is to obtain the answer
+    if (op == "=") {
+      // call service to obtain result of requested operation
+      this.state = "obtain result"
+      this.display = this.getresult(this.operators).toString();
+    }
+  }
+
+  displayNumbers() {
+    return this.numbers;
+  }
+
+  getresult(operators) {
+    // call a service and get the number
+    var tempResult = this.numbers[0];
+    for (var i = 1; i <= this.numbers.length; i++) {
+      var tempNumber = this.numbers[i];
+      var tempOperator = this.operators[i-1];
+      switch (tempOperator) {
+        case '+': tempResult = tempResult + tempNumber; break;
+        case '-': tempResult = tempResult - tempNumber; break;
+        case '*': tempResult = tempResult * tempNumber; break;
+        case '/': tempResult = tempResult / tempNumber; break;
+      }
+    }
+    console.log("number is =" + tempResult);
+    return tempResult;
+  }
+
+  clear() {
+    this.numbers = [];
+    this.display = "";
   }
 }
