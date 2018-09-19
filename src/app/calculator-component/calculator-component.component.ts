@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbdButtonsCheckbox } from './button-checkbox';
 
 import { CalculatorService } from './../calculator.service';
 

@@ -1,11 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import { CalculatorComponentComponent } from './calculator-component/calculator-component.component';
 import { AppComponent } from './app.component';
+
+// services
+import { CalculatorService } from './calculator.service';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        CalculatorComponentComponent,
         AppComponent
       ],
+      imports: [NgbModule, HttpClientTestingModule],
+      providers: [CalculatorService]      
     }).compileComponents();
   }));
   it('should create the app', async(() => {

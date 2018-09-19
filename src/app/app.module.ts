@@ -8,7 +8,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { CalculatorComponentComponent } from './calculator-component/calculator-component.component';
-import { NgbdButtonsCheckbox } from './calculator-component/button-checkbox';
 
 import { CalculatorService } from './calculator.service';
 
@@ -20,7 +19,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     CalculatorComponentComponent,
-    NgbdButtonsCheckbox
   ],
   imports: [
     BrowserModule,
