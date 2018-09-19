@@ -5,7 +5,7 @@ import { CalculatorService } from './../calculator.service';
 @Component({
   selector: 'app-calculator-component',
   templateUrl: './calculator-component.component.html',
-  styleUrls: ['./calculator-component.component.css'],
+  styleUrls: ['./calculator-component.component.scss'],
   providers: [CalculatorService]
 })
 export class CalculatorComponentComponent implements OnInit {
