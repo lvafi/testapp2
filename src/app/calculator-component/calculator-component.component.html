@@ -1,7 +1,82 @@
-<div>
-  <label >number 1</label>
-  <input id="number1" >
+<!DOCTYPE html>
+<div class="container">
 </div>
-<p>
-  calculator-component works!
-</p>
+
+<div class="container card">
+  <div class="card-header row">Calculator</div>
+  <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-9 card-body" id="calcatordisplay">{{ display }}</div>
+      <div class="col-sm-2"></div>        
+  </div>  
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-9 card-body">
+      <!-- <div class="col-sm-12">
+        <div class="col-sm-1">
+          <button class="btn btn-primary" (click)="enterNumber('7')" >7</button>
+        </div>
+        <div class="col-sm-1">
+          <button class="btn btn-primary" (click)="enterNumber('7')" >7</button>
+        </div>
+        <div class="col-sm-1">
+          <button class="btn btn-primary" (click)="enterNumber('7')" >7</button>
+        </div>
+      </div> -->
+        <table class="table table-sm main-table">
+            <tbody>
+          
+              <tr>
+                <td>
+                    <table class="table table-sm" style="table-layout: fixed">
+                        <thead>
+                      
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><button class="btn btn-primary" (click)="enterNumber('7')">7</button></td>
+                            <td><button class="btn btn-primary" (click)="enterNumber('8')">8</button></td>
+                            <td><button class="btn btn-primary" (click)="enterNumber('9')">9</button></td>
+                            <td><button class="btn btn-secondary" (click)="operate('/')">/</button></td>                 
+                          </tr>
+                          <tr>
+                              <td><button class="btn btn-primary" (click)="enterNumber('4')">4</button></td>
+                              <td><button class="btn btn-primary" (click)="enterNumber('5')">5</button></td>
+                              <td><button class="btn btn-primary" (click)="enterNumber('6')">6</button></td>
+                              <td><button class="btn btn-secondary" (click)="operate('*')">X</button></td> 
+                          </tr>
+                          <tr>
+                              <td><button class="btn btn-primary" (click)="enterNumber('1')">1</button></td>
+                              <td><button class="btn btn-primary" (click)="enterNumber('2')">2</button></td>
+                              <td><button class="btn btn-primary" (click)="enterNumber('3')">3</button></td>
+                              <td><button class="btn btn-secondary" (click)="operate('-')">-</button></td> 
+                          </tr>
+                          <tr>
+                              <td><button class="btn btn-primary" (click)="enterNumber('0')">0</button></td>
+                              <td><button class="btn btn-primary" (click)="enterNumber('.')">.</button></td>
+                              <td><button class="btn btn-secondary" (click)="operate('=')">Ent</button></td>
+                              <td><button class="btn btn-secondary" (click)="operate('+')">+</button></td> 
+                          </tr>
+                          <tr>
+                              <td><button class="btn btn-secondary btn-success card-footer" (click)="clear()">Clear</button></td>
+                          </tr>
+                          <tr>    
+                              <td><button class="btn btn-secondary btn-success card-footer" (click)="operate('backspace')">Back Space</button></td>
+                          </tr>
+                        </tbody>
+                      
+                      </table>
+                </td>
+                <td>
+                  <li *ngFor="let n of numbers">
+                    {{ n }}
+                  </li>
+                </td>
+              </tr>
+          
+          </tbody>
+          </table>
+    </div>
+    <div class="col-sm-2"></div>        
+  </div>
+</div>
