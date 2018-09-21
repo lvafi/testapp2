@@ -52,10 +52,30 @@ export class CalculatorComponentComponent implements OnInit {
   }
 
   private operateOnSymbol(op) {
+    // detect to see if operator is a backspace
+    // this will remove the last digit(or decimal) entered in the display
+    if (op == 'backspace') {
+      this.display = this.display.substring(0, this.display.length - 1);
+      return;
+    }
+
     // save operator
     this.operators.push(op);
-    // copy the display to number
-    var convertedNumber = parseFloat(this.display);
+
+    var convertedNumber;
+    // validate the display
+    // if user entered a dot, this is not a valid value.
+    // the UI will convert this into zero
+    var reg = /^\.+$/g;
+    var match = reg.test(this.display);
+    if (match) {
+      convertedNumber = 0;
+    }
+    else {
+      // copy the display to number
+      convertedNumber = parseFloat(this.display);
+    }
+
     this.numbers.push(convertedNumber);
 
     console.log("number is =" + convertedNumber);
