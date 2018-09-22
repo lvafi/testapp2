@@ -4,6 +4,7 @@
 #calcatordisplay {
   margin-top: 10px;
   border: 1px solid #efefef;
+  height: 70px;
 }
 
 .main-table {
@@ -13,4 +14,20 @@
 
 table td {
   border: 0;
+}
+
+.keypad {
+  width: 400px;
+}
+
+.keypd-btn {
+  width: 90px;
+}
+
+.backspace {
+  font-size: 0.5em;
+}
+
+.stack {
+  width: 100px;
 }

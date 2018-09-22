@@ -16,48 +16,45 @@
             <tbody>
           
               <tr>
-                <td>
-                    <table class="table table-sm" style="table-layout: fixed">
-                        <thead>
-                      
-                        </thead>
+                <td class="keypad">
+                    <table class="table" style="table-layout: fixed; width: auto">
                         <tbody>
                           <tr>
-                            <td><button class="btn btn-primary" (click)="enterNumber('7')" i18n="@@seven">7</button></td>
-                            <td><button class="btn btn-primary" (click)="enterNumber('8')" i18n="@@eight">8</button></td>
-                            <td><button class="btn btn-primary" (click)="enterNumber('9')" i18n="@@nine">9</button></td>
-                            <td><button class="btn btn-secondary" (click)="operate('/')" i18n="@@divide">/</button></td>                 
+                            <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('7')" i18n="@@seven">7</button></td>
+                            <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('8')" i18n="@@eight">8</button></td>
+                            <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('9')" i18n="@@nine">9</button></td>
+                            <td><button class="btn btn-secondary keypd-btn" (click)="operate('/')" i18n="@@divide">/</button></td>                 
                           </tr>
                           <tr>
-                              <td><button class="btn btn-primary" (click)="enterNumber('4')" i18n="@@four">4</button></td>
-                              <td><button class="btn btn-primary" (click)="enterNumber('5')" i18n="@@five">5</button></td>
-                              <td><button class="btn btn-primary" (click)="enterNumber('6')" i18n="@@six">6</button></td>
-                              <td><button class="btn btn-secondary" (click)="operate('*')" i18n="@@multiply">X</button></td> 
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('4')" i18n="@@four">4</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('5')" i18n="@@five">5</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('6')" i18n="@@six">6</button></td>
+                              <td><button class="btn btn-secondary keypd-btn" (click)="operate('*')" i18n="@@multiply">X</button></td> 
                           </tr>
                           <tr>
-                              <td><button class="btn btn-primary" (click)="enterNumber('1')" i18n="@@one">1</button></td>
-                              <td><button class="btn btn-primary" (click)="enterNumber('2')" i18n="@@two">2</button></td>
-                              <td><button class="btn btn-primary" (click)="enterNumber('3')" i18n="@@three">3</button></td>
-                              <td><button class="btn btn-secondary" (click)="operate('-')" i18n="@@minus">-</button></td> 
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('1')" i18n="@@one">1</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('2')" i18n="@@two">2</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('3')" i18n="@@three">3</button></td>
+                              <td><button class="btn btn-secondary keypd-btn" (click)="operate('-')" i18n="@@minus">-</button></td> 
                           </tr>
                           <tr>
-                              <td><button class="btn btn-primary" (click)="enterNumber('0')" i18n="@@zero">0</button></td>
-                              <td><button class="btn btn-primary" (click)="enterNumber('.')" i18n="@@dot">.</button></td>
-                              <td><button class="btn btn-secondary" (click)="operate('=')" i18n="@@enter">Ent</button></td>
-                              <td><button class="btn btn-secondary" (click)="operate('+')" i18n="@@plus">+</button></td> 
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('0')" i18n="@@zero">0</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('.')" i18n="@@dot">.</button></td>
+                              <td><button class="btn btn-secondary keypd-btn" (click)="operate('=')" i18n="@@enter">Ent</button></td>
+                              <td><button class="btn btn-secondary keypd-btn" (click)="operate('+')" i18n="@@plus">+</button></td> 
                           </tr>
                           <tr>
-                              <td><button class="btn btn-secondary btn-success card-footer" (click)="clear()" i18n="@@clear">Clear</button></td>
+                              <td><button class="btn btn-secondary btn-success card-footer keypd-btn" (click)="clear()" i18n="@@clear">Clear</button></td>
                           </tr>
                           <tr>    
-                              <td><button class="btn btn-secondary btn-success card-footer" (click)="operate('backspace')" i18n="@@backspace">Back Space</button></td>
+                              <td><button class="btn btn-secondary btn-success card-footer backspace" (click)="operate('backspace')" i18n="@@backspace">Back Space</button></td>
                           </tr>
                         </tbody>
                       
                       </table>
                 </td>
                 <td>
-                  <li *ngFor="let n of numbers; trackBy: trackByFn">
+                  <li class="stack" *ngFor="let n of numbers; trackBy: trackByFn">
                     {{ n }}
                   </li>
                 </td>
