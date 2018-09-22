@@ -1,7 +1,89 @@
-<div>
-  <label >number 1</label>
-  <input id="number1" >
+<!DOCTYPE html>
+<div class="container">
 </div>
-<p>
-  calculator-component works!
-</p>
+
+<div class="container card">
+  <div class="card-header row" i18n="@@calculatorTitle">Calculator</div>
+  <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-9 card-body" id="calcatordisplay">{{ display }}</div>
+      <div class="col-sm-2"></div>        
+  </div>  
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-9 card-body">
+        <table class="table table-sm main-table">
+            <tbody>
+          
+              <tr>
+                <td class="keypad">
+                    <table class="table" style="table-layout: fixed; width: auto">
+                        <tbody>
+                          <tr>
+                            <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('7')" i18n="@@seven">7</button></td>
+                            <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('8')" i18n="@@eight">8</button></td>
+                            <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('9')" i18n="@@nine">9</button></td>
+                            <td><button class="btn btn-secondary keypd-btn" (click)="operate('/')" i18n="@@divide">/</button></td>                 
+                          </tr>
+                          <tr>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('4')" i18n="@@four">4</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('5')" i18n="@@five">5</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('6')" i18n="@@six">6</button></td>
+                              <td><button class="btn btn-secondary keypd-btn" (click)="operate('*')" i18n="@@multiply">X</button></td> 
+                          </tr>
+                          <tr>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('1')" i18n="@@one">1</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('2')" i18n="@@two">2</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('3')" i18n="@@three">3</button></td>
+                              <td><button class="btn btn-secondary keypd-btn" (click)="operate('-')" i18n="@@minus">-</button></td> 
+                          </tr>
+                          <tr>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('0')" i18n="@@zero">0</button></td>
+                              <td><button class="btn btn-primary keypd-btn" (click)="enterNumber('.')" i18n="@@dot">.</button></td>
+                              <td><button class="btn btn-secondary keypd-btn" (click)="operate('=')" i18n="@@enter">Ent</button></td>
+                              <td><button class="btn btn-secondary keypd-btn" (click)="operate('+')" i18n="@@plus">+</button></td> 
+                          </tr>
+                          <tr>
+                              <td><button class="btn btn-secondary btn-success card-footer keypd-btn" (click)="clear()" i18n="@@clear">Clear</button></td>
+                          </tr>
+                          <tr>    
+                              <td><button class="btn btn-secondary btn-success card-footer backspace" (click)="operate('backspace')" i18n="@@backspace">Back Space</button></td>
+                          </tr>
+                        </tbody>
+                      
+                      </table>
+                </td>
+                <td>
+                  <li class="stack" *ngFor="let n of numbers; trackBy: trackByFn">
+                    {{ n }}
+                  </li>
+                </td>
+              </tr>
+          
+          </tbody>
+          </table>
+    </div>
+    <div class="col-sm-2"></div>        
+  </div>
+</div>
+
+<trans-unit id="calculatorTitle" datatype="html"></trans-unit>
+<trans-unit id="zero" datatype="html"></trans-unit>
+<trans-unit id="one" datatype="html"></trans-unit>
+<trans-unit id="two" datatype="html"></trans-unit>
+<trans-unit id="three" datatype="html"></trans-unit>
+<trans-unit id="four" datatype="html"></trans-unit>
+<trans-unit id="five" datatype="html"></trans-unit>
+<trans-unit id="six" datatype="html"></trans-unit>
+<trans-unit id="seven" datatype="html"></trans-unit>
+<trans-unit id="eight" datatype="html"></trans-unit>
+<trans-unit id="nine" datatype="html"></trans-unit>
+<trans-unit id="dot" datatype="html"></trans-unit>
+<trans-unit id="plus" datatype="html"></trans-unit>
+<trans-unit id="minus" datatype="html"></trans-unit>
+<trans-unit id="multiply" datatype="html"></trans-unit>
+<trans-unit id="divide" datatype="html"></trans-unit>
+<trans-unit id="enter" datatype="html"></trans-unit>
+<trans-unit id="clear" datatype="html"></trans-unit>
+<trans-unit id="backspace" datatype="html"></trans-unit>
+
