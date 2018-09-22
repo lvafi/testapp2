@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalculatorComponentComponent } from './calculator-component.component';
 
 // services
@@ -14,7 +14,7 @@ describe('CalculatorComponentComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CalculatorComponentComponent ],
       imports: [NgbModule, HttpClientTestingModule],
-      providers: [CalculatorService]      
+      providers: [CalculatorService]
     })
     .compileComponents();
   }));
@@ -26,6 +26,7 @@ describe('CalculatorComponentComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
   });
 });

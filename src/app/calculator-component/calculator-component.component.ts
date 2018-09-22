@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 
 import { CalculatorService } from './../calculator.service';
 
@@ -8,97 +8,122 @@ import { CalculatorService } from './../calculator.service';
   styleUrls: ['./calculator-component.component.scss'],
   providers: [CalculatorService]
 })
-export class CalculatorComponentComponent implements OnInit {
+export class CalculatorComponentComponent {
 
-  state: string = "enter Number";
+  state = 'enter Number';
   numbers: Array<number> = [];
   operators: Array<string> = [];
   result: Number = 0;
-  display: string = "";
-  operator: string = "Add";
+  display = '';
+  operator = 'Add';
+  alert = '';
 
   constructor(private calcService: CalculatorService) { }
 
-  ngOnInit() {
-  }
-
-  enterNumber(number: string) {
-    // if the display already is showing the total result,
-    // and the user enter another digit again, 
-    // the display needs to be cleared to store the new number
-    if (this.state == "obtain result") {
-      this.display = "";
-      this.state = "enter Number";
+  /**
+   * enterNumber
+   * accepts (digit or decimal) and put into display
+   *
+   * if the display already is showing the total result,
+   * and the user enter another digit again,
+   * the display needs to be cleared to store the new number
+   *
+   * @param num, expects a digit or decimal
+   */
+  enterNumber(num: string): void  {
+    if (this.state === 'obtain result') {
+      this.display = '';
+      this.state = 'enter Number';
     }
-    this.display += number;
+    this.display += num;
   }
 
-  operate(op: string) {
+  operate(op: string): void {
     try {
-      if (this.state == "enter Number") {
+      if (this.state === 'enter Number')
         this.operateOnSymbol(op);
-      } else if (this.state == "obtain result") {
-        /*
-        if (op == "+" || op == "-" || op == "*" || op == "/") {
-          this.state = "enter Number";
-          this.operateOnSymbol(op);          
-        }
-        */
-      }
-    }
-    catch (ex) {
-
+    } catch (ex) {
+      // place alert on screen
+      this.alert = ex;
     }
   }
 
-  private operateOnSymbol(op) {
+  displayNumbers(): Array<number> {
+    return this.numbers;
+  }
+
+  /**
+   * Evaluate the total amount from the numbers and operators entered
+   */
+  getresult(): number {
+    return this.calcService.calculate(this.numbers, this.operators);
+  }
+
+  /**
+   * Clear display
+   * resets the entire calculator stack, and start from the beginning
+   */
+  clear(): void {
+    this.numbers = [];
+    this.operators = [];
+    this.display = '';
+  }
+
+  trackByFn(index, item): number {
+    return index;
+  }
+
+  private removeOneCharFromDisplay(): void {
+    this.display = this.display.substring(0, this.display.length - 1);
+  }
+
+  /**
+   * getNumberFromDisplay
+   * a function to take the current digits from the display
+   * and attempt to convert it into a number
+   *
+   * [Note] this function will handle invalid number in format . , .. , ... etc
+   *        and other number that cannot be converted properly will be treated as zero
+   *
+   * @return a number with decimal places if it is a floating point number
+   */
+  private getNumberFromDisplay(): number {
+    // use regular expression to catch case with only dots
+    const reg = /^\.+$/g;
+    const match = reg.test(this.display);
+
+    return (match) ? 0 :  parseFloat(this.display);
+  }
+
+  /**
+   * operateOnSymbol
+   *
+   * Accepts an operator symbol and decide the next action
+   * @param op, a valid operator as defined in Calculator Service
+   */
+  private operateOnSymbol(op): void {
     // detect to see if operator is a backspace
     // this will remove the last digit(or decimal) entered in the display
-    if (op == 'backspace') {
-      this.display = this.display.substring(0, this.display.length - 1);
+    if (op === 'backspace') {
+      this.removeOneCharFromDisplay();
+
       return;
     }
 
     // save operator
     this.operators.push(op);
 
-    var convertedNumber;
-    // validate the display
-    // if user entered a dot, this is not a valid value.
-    // the UI will convert this into zero
-    var reg = /^\.+$/g;
-    var match = reg.test(this.display);
-    if (match) {
-      convertedNumber = 0;
-    }
-    else {
-      // copy the display to number
-      convertedNumber = parseFloat(this.display);
-    }
+    // store number into number list
+    this.numbers.push(this.getNumberFromDisplay());
 
-    this.numbers.push(convertedNumber);
-
-    console.log("number is =" + convertedNumber);
     // clear display
-    this.display = "";
+    this.display = '';
     // check to see if operation is to obtain the answer
-    if (op == "=") {
+    if (op === '=') {
       // call service to obtain result of requested operation
-      this.state = "obtain result"
-      this.display = this.getresult(this.operators).toString();
+      this.state = 'obtain result';
+      this.display = this.getresult()
+                        .toString();
     }
-  }
-
-  displayNumbers() {
-    return this.numbers;
-  }
-
-  getresult(operators) {
-    return this.calcService.calculate(this.numbers, this.operators);
-  }
-
-  clear() {
-    this.numbers = [];
-    this.display = "";
   }
 }

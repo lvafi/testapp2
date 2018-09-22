@@ -1,17 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
-//import { CalculatorComponentComponent } from './calculator-component/calculator-component.component';
 
 // services
 import { CalculatorService } from './calculator.service';
 
 describe('CalculatorService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [
-      //CalculatorComponentComponent
-    ],
     imports: [HttpClientTestingModule],
     providers: [CalculatorService]
   }));
@@ -19,8 +13,10 @@ describe('CalculatorService', () => {
   it('should be created', () => {
     const service: CalculatorService = TestBed.get(CalculatorService);
     const httpMock: HttpTestingController = TestBed.get(HttpTestingController);
-    expect(service).toBeTruthy();
-    expect(httpMock).toBeTruthy();
+    expect(service)
+      .toBeTruthy();
+    expect(httpMock)
+      .toBeTruthy();
   });
 
   it('should be able to add 2 numbers', () => {
@@ -29,9 +25,13 @@ describe('CalculatorService', () => {
 
     const numbers = [2, 3];
     const operators = ['+', '='];
-    const result = service.calculate(numbers, operators); 
-    expect(result).not.toBeNull();
-    expect(typeof result).toEqual('number');
-    expect(result).toEqual(5);
+    const result = service.calculate(numbers, operators);
+    expect(result)
+      .not
+      .toBeNull();
+    expect(typeof result)
+      .toEqual('number');
+    expect(result)
+      .toEqual(5);
   });
 });

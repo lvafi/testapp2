@@ -12,18 +12,28 @@ export class CalculatorService {
    * calculate
    * returns the result of the array treated with the operators
    * works with +,-,* and /
-   * @param numbers, an array of numbers to operate on
-   * @param operators an array of operators treat the next number with
+   * @param numbers, a list of numbers, in sequence entered by the user
+   * @param operators, a list of operators, in sequence entered by the user
    */
-  calculate(numbers, operators) {
-    // TBD this is mockup function logic
-    // the following logic in production code, will be hidden in the cloud.
-    
-    // call a service and get the number
-    var tempResult = numbers[0];
-    for (var i = 1; i <= numbers.length; i++) {
-      var tempNumber = numbers[i];
-      var tempOperator = operators[i-1];
+  calculate(numbers, operator): number {
+    // TODO - replace the following mockup call with actual API service
+    //       this call will be used only during tesing
+
+    return this.mockCalculate(numbers, operator);
+  }
+
+/**
+ * mockCalculate
+ * a mock function to emulator an actual call to the API Service
+ * @param numbers, a list of numbers, in sequence entered by the user
+ * @param operators, a list of operators, in sequence entered by the user
+ */
+  private mockCalculate(numbers, operators): number {
+    let tempResult = numbers[0];
+    for (let i = 1; i <= numbers.length; i++) {
+      const tempNumber = numbers[i];
+      const tempOperator = operators[i - 1];
+
       switch (tempOperator) {
         case '+': tempResult = tempResult + tempNumber; break;
         case '-': tempResult = tempResult - tempNumber; break;
@@ -31,7 +41,7 @@ export class CalculatorService {
         case '/': tempResult = tempResult / tempNumber; break;
       }
     }
-    console.log("number is =" + tempResult);
+
     return tempResult;
-  }  
+  }
 }
